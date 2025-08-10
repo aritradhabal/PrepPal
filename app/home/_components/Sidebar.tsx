@@ -72,7 +72,7 @@ function Sidebar() {
       </div>
 
       <div className="p-5 border-1 border-gray-200 m-2 rounded-sm">
-        <Progress value={30} />
+        <Progress value={60} />
         <p className="text-xs font-medium text-gray-700 pt-1">
           3 out of 5 Courses Created
         </p>
