@@ -11,6 +11,7 @@ import SelectTopic from "./_components/SelectTopic";
 import SelectOptions from "./_components/SelectOptions";
 
 function CreateCourse() {
+  
   const StepperOptions = [
     {
       id: 0,

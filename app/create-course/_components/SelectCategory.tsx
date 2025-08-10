@@ -9,10 +9,10 @@ function SelectCategory() {
         <FileUpload />
       </div>
 
-      <div className="pl-10  my-5 flex flex-col max-h-100 max-w-100">
+      <div className="pl-10  my-5 flex flex-col max-h-100 max-w-120">
         <div className="flex flex-col gap-y-1">
           <label htmlFor="topic-input" className="text-sm font-medium">
-            Which topic you want to select ?
+            Which category you want to pick ?
           </label>
           <Input
             className="focus-visible:ring-0 min-w-100 placeholder:font-sans placeholder:font-normal placeholder:text-neutral-400 placeholder:dark:text-neutral-400 placeholder:text-sm"
