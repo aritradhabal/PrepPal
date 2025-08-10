@@ -66,7 +66,7 @@ function CreateCourse() {
           </div>
         ))}
       </ul>
-      
+
       {/* {Components} */}
       {activeIndex == 0 ? <SelectCategory /> : null}
       {activeIndex == 1 ? <SelectTopic /> : null}
@@ -74,7 +74,7 @@ function CreateCourse() {
 
       {/* {Next and Previous Burttons} */}
 
-      <div className="flex justify-between items-center mx-20">
+      <div className="my-10 flex justify-between items-center mx-20">
         <Button
           onClick={() => setActiveIndex(activeIndex - 1)}
           disabled={activeIndex < 1}
