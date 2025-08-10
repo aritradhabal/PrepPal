@@ -28,7 +28,7 @@ function Hero() {
 
             <Link
               className="flex items-center justify-center gap-x-1 rounded-sm border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
-              href="https://github.com/aritradhabal"
+              href="https://github.com/aritradhabal/PrepPal"
               rel="noopener noreferrer"
               target="_blank"
             >
