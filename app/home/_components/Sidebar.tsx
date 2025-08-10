@@ -44,7 +44,7 @@ function Sidebar() {
         </Link>
         <hr className="my-5 min-w-full border-1 border-gray-300 " />
         <ul className="w-full">
-          {sidebarItems.map((item, id) => (
+          {sidebarItems.map((item) => (
             <Link
               key={item.id}
               className="my-2 flex items-center px-5 py-3 rounded-md hover:bg-gray-100 cursor-pointer"
