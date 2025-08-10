@@ -16,7 +16,7 @@ function Header() {
         <p className="font-bold">PrepPal</p>
       </Link>
       <div>
-        <Button className="rounded-sm border-1 border-[#fcbb00] bg-[#fcbb00] text-[#482100] hover:bg-[#ffdd1b] hover:border-1 hover:border-[#fcbb00] transition-colors">
+        <Button className="cursor-pointer rounded-sm border-1 border-[#fcbb00] bg-[#fcbb00] text-[#482100] hover:bg-[#ffdd1b] hover:border-1 hover:border-[#fcbb00] transition-colors">
           Sign In
         </Button>
       </div>
