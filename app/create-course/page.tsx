@@ -6,6 +6,9 @@ import { GiOpenFolder } from "react-icons/gi";
 import { GiChoice } from "react-icons/gi";
 import { RiSettings2Fill } from "react-icons/ri";
 import { text } from "stream/consumers";
+import SelectCategory from "./_components/SelectCategory";
+import SelectTopic from "./_components/SelectTopic";
+import SelectOptions from "./_components/SelectOptions";
 
 function CreateCourse() {
   const StepperOptions = [
@@ -28,7 +31,7 @@ function CreateCourse() {
   const [activeIndex, setActiveIndex] = useState(0);
   console.log(activeIndex);
   return (
-    <div>
+    <div className="h-full">
       {/* {Header} */}
       <div className="flex justify-center items-center">
         <h2 className="font-extrabold text-3xl my-8 text-black">
@@ -63,7 +66,11 @@ function CreateCourse() {
           </div>
         ))}
       </ul>
+      
       {/* {Components} */}
+      {activeIndex == 0 ? <SelectCategory /> : null}
+      {activeIndex == 1 ? <SelectTopic /> : null}
+      {activeIndex == 2 ? <SelectOptions /> : null}
 
       {/* {Next and Previous Burttons} */}
 
@@ -71,7 +78,8 @@ function CreateCourse() {
         <Button
           onClick={() => setActiveIndex(activeIndex - 1)}
           disabled={activeIndex < 1}
-          className={`cursor-pointer rounded-sm border-1 border-[#ffec46] bg-[#ffec46] text-[#482100] hover:bg-[#fcbb00] hover:border-1 hover:border-[#fcbb00] transition-colors`}
+          variant={"outline"}
+          className={`cursor-pointer rounded-sm border-1 text-[#482100] hover:bg-[#fcbb00] hover:border-1 hover:border-[#fcbb00] transition-colors`}
         >
           Previous
         </Button>
