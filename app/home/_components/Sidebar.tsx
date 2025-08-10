@@ -31,7 +31,7 @@ function Sidebar() {
   ];
 
   return (
-    <div className="fixed max-w-64 h-full border-1 border-gray-300 flex flex-col justify-between">
+    <div className="max-w-64 h-full fixed border-1 border-gray-300 flex flex-col justify-between">
       <div className="flex flex-col justify-start items-center py-5 px-5">
         <Link href={"/"} className="flex items-center px-5">
           <Image

@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import CoursesHome from "./_components/CoursesHome";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <CoursesHome />
+    </div>
+  );
 }
 
-export default page
+export default page;
