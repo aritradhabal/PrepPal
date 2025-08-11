@@ -7,6 +7,9 @@ import emojiData from "react-apple-emojis/src/data.json";
 import Dialog_render from "./Dialog_render";
 
 function Cards({ searchterm }: { searchterm: string }) {
+  const [open, setOpen] = useState(false);
+  const [subject_id, setSubject_id] = useState<number | null>(null);
+
   const data: any = searchSubjects(data_, searchterm);
   if (data.subjects.length < 1) {
     return;
@@ -65,8 +68,6 @@ function Cards({ searchterm }: { searchterm: string }) {
       );
     }
   };
-  const [open, setOpen] = useState(false);
-  const [subject_id, setSubject_id] = useState<number | null>(null);
   const handleCardClick = (id: number) => {
     setOpen(true);
     setSubject_id(id);
