@@ -1,14 +1,20 @@
 "use client";
 import React, { useState } from "react";
-import data from "@/app/_shared/TopicList2";
+import data_ from "@/app/_shared/TopicList2";
+import searchSubjects from "@/app/create-course/_components/SearchQuery";
 import { EmojiProvider, Emoji } from "react-apple-emojis";
 import emojiData from "react-apple-emojis/src/data.json";
 import Dialog_render from "./Dialog_render";
 
-function Cards() {
+function Cards({ searchterm }: { searchterm: string }) {
+  const data: any = searchSubjects(data_, searchterm);
+  if (data.subjects.length < 1) {
+    return;
+  }
   data.subjects = data.subjects.filter(
-    (subject, index, self) =>
-      index === self.findIndex((s) => s.subject_name === subject.subject_name)
+    (subject: any, index: any, self: any) =>
+      index ===
+      self.findIndex((s: any) => s.subject_name === subject.subject_name)
   );
   const total_modules = (data: any) => {
     return data.subjects.reduce((total: number, subject: any) => {
@@ -68,7 +74,7 @@ function Cards() {
 
   return (
     <div className="cards-grid sticky max-h-[27svh] md:max-h-64 overflow-y-scroll space-x-1 space-y-1">
-      {data.subjects.map((subject) => (
+      {data.subjects.map((subject: any) => (
         <div
           onClick={() => handleCardClick(subject.id)}
           key={subject.id}
