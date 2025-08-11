@@ -11,7 +11,6 @@ import SelectTopic from "./_components/SelectTopic";
 import SelectOptions from "./_components/SelectOptions";
 
 function CreateCourse() {
-  
   const StepperOptions = [
     {
       id: 0,
@@ -42,7 +41,10 @@ function CreateCourse() {
       {/* {Stepper} */}
       <ul className="flex items-center justify-center gap-x-2 md:gap-x-5">
         {StepperOptions.map((item) => (
-          <div key={item.id} className="text-xs md:text-base flex items-center gap-x-2 md:gap-x-5">
+          <div
+            key={item.id}
+            className="text-xs md:text-base flex items-center gap-x-2 md:gap-x-5"
+          >
             <div className="flex justify-center items-center gap-x-1">
               <div
                 className={`bg-gray-200 text-gray-500 rounded-full p-1
@@ -75,7 +77,7 @@ function CreateCourse() {
 
       {/* {Next and Previous Burttons} */}
 
-      <div className="mx-5 my-5 md:mx-20 md:my-10 flex justify-between items-center ">
+      <div className="mx-5 mb-2 md:mx-20 flex justify-between items-center ">
         <Button
           onClick={() => setActiveIndex(activeIndex - 1)}
           disabled={activeIndex < 1}

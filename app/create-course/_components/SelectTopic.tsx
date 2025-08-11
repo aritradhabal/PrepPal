@@ -1,24 +1,26 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import Cards from "./Cards";
+import Cards from "./ui/Cards";
 function SelectTopic() {
   return (
-    <div className="md:border-1 grid my-2 mx-2 md:my-10 md:mx-20 ">
-      <Cards/>
-      <div className="my-5 flex flex-col  ">
+    <div className="grid my-8 md:my-5 mx-5 md:mx-20 gap-y-5">
+      <div className="flex flex-col gap-y-1">
+        <label htmlFor="topic-input" className="text-sm font-medium">
+          Search
+        </label>
+        <Input
+          className="focus-visible:ring-0 placeholder:font-sans placeholder:font-normal placeholder:text-neutral-400 placeholder:dark:text-neutral-50 placeholder:text-sm"
+          id="topic-input"
+          type="text"
+          placeholder="e.g. Metrology & Instrumentation"
+        />
+      </div>
+
+      <Cards />
+
+      <div className="flex flex-col  ">
         <div className="flex flex-col gap-y-1">
-          <label htmlFor="topic-input" className="text-sm font-medium">
-            Which category you want to pick ?
-          </label>
-          <Input
-            className="focus-visible:ring-0 placeholder:font-sans placeholder:font-normal placeholder:text-neutral-400 placeholder:dark:text-neutral-400 placeholder:text-sm"
-            id="topic-input"
-            type="text"
-            placeholder="e.g. Hydrology from Semester 5"
-          />
-        </div>
-        <div className="my-2 flex flex-col gap-y-1">
           <label htmlFor="topic-textarea" className="text-sm font-medium">
             Additional information (Optional)
           </label>
