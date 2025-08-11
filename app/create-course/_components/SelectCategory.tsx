@@ -4,12 +4,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { FileUpload } from "@/components/ui/file-upload";
 function SelectCategory() {
   return (
-    <div className="grid grid-cols-2 my-10 mx-20 max-h-100">
+    <div className="grid my-2 mx-2 md:my-10 md:mx-20 max-h-100">
       <div className="w-full">
         <FileUpload />
       </div>
 
-      <div className="pl-10  my-5 flex flex-col max-h-100 max-w-120">
+      {/* <div className="pl-10  my-5 flex flex-col max-h-100 max-w-120">
         <div className="flex flex-col gap-y-1">
           <label htmlFor="topic-input" className="text-sm font-medium">
             Which category you want to pick ?
@@ -31,7 +31,7 @@ function SelectCategory() {
             placeholder="e.g. Extra focus on basic concepts"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
