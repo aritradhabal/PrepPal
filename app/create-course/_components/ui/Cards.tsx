@@ -79,7 +79,7 @@ function Cards({ searchterm }: { searchterm: string }) {
         <div
           onClick={() => handleCardClick(subject.id)}
           key={subject.id}
-          className="bg-white p-2 h-30 max-w-full rounded-sm gray-50 flex flex-col items-start gap-y-1 border-1 border-[#E2E8F0] hover:bg-[#ecf0f4] duration-400 cursor-pointer"
+          className="bg-white p-2 max-h-30 max-w-full rounded-sm gray-50 flex flex-col items-start gap-y-1 border-1 border-[#E2E8F0] hover:bg-[#ecf0f4] duration-400 cursor-pointer"
         >
           <div className="flex items-center gap-x-2">
             <div>{getEmoji(subject.modules.length)}</div>

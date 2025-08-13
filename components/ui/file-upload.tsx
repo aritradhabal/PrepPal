@@ -6,6 +6,9 @@ import { useDropzone } from "react-dropzone";
 import { EmojiProvider, Emoji } from "react-apple-emojis";
 import emojiData from "react-apple-emojis/src/data.json";
 import Image from "next/image";
+import { Button } from "./button";
+import Dialog_fileuploader from "./Dialog_fileuploader";
+import { main } from "@/app/_data/upload_pdf";
 
 const syllabus_emoji = () => {
   return (
@@ -41,8 +44,37 @@ export const FileUpload = ({
 }: {
   onChange?: (files: File[]) => void;
 }) => {
+  const [openDialog, setOpenDialog] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [disabledState, setdisabledState] = useState(true);
+
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        if (typeof reader.result === "string") {
+          const base64String = reader.result.split(",")[1];
+          resolve(base64String);
+        } else {
+          reject(new Error("Failed to read file as a string."));
+        }
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+  let data: any;
+
+  const ProcessDialog = async () => {
+    setOpenDialog(true);
+    const value = await fileToBase64(files[0]);
+    data = await main({ pdfData: value });
+    console.log(data);
+    setdisabledState(false);
+  };
 
   const handleFileChange = (newFiles: File[]) => {
     // setFiles((prevFiles) => [...prevFiles, ...newFiles]);
@@ -58,6 +90,7 @@ export const FileUpload = ({
     multiple: false,
     noClick: true,
     onDrop: handleFileChange,
+    accept: { "application/pdf": [] },
     onDropRejected: (error) => {
       console.log(error);
     },
@@ -77,6 +110,7 @@ export const FileUpload = ({
           multiple={false}
           onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
           className="hidden"
+          accept="application/pdf"
         />
         <div className="flex flex-col items-center justify-center">
           <p className="relative z-20 font-sans font-bold text-neutral-700 dark:text-neutral-300 text-base flex items-center justify-center gap-x-1">
@@ -175,30 +209,60 @@ export const FileUpload = ({
           </div>
         </div>
       </motion.div>
+
+      {files.length > 0 && (
+        <div className="flex justify-evenly items-center">
+          <Button
+            className="cursor-pointer"
+            variant={"destructive"}
+            onClick={() => {
+              setFiles([]);
+              if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+              }
+            }}
+          >
+            Remove
+          </Button>
+          <Button
+            variant={"default"}
+            className="cursor-pointer"
+            onClick={ProcessDialog}
+          >
+            Process
+          </Button>
+        </div>
+      )}
+      {openDialog && (
+        <Dialog_fileuploader
+          openDialog={openDialog}
+          disabledState={disabledState}
+        />
+      )}
     </div>
   );
 };
 
-export function GridPattern() {
-  const columns = 41;
-  const rows = 11;
-  return (
-    <div className="flex bg-yellow-100 dark:bg-neutral-900 shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105">
-      {Array.from({ length: rows }).map((_, row) =>
-        Array.from({ length: columns }).map((_, col) => {
-          const index = row * columns + col;
-          return (
-            <div
-              key={`${col}-${row}`}
-              className={`w-10 h-10 flex shrink-0 rounded-[2px] ${
-                index % 2 === 0
-                  ? "bg-gray-50 dark:bg-neutral-950"
-                  : "bg-yellow-50 dark:bg-neutral-950 shadow-[0px_0px_1px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
-              }`}
-            />
-          );
-        })
-      )}
-    </div>
-  );
-}
+// export function GridPattern() {
+//   const columns = 41;
+//   const rows = 11;
+//   return (
+//     <div className="flex bg-yellow-100 dark:bg-neutral-900 shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105">
+//       {Array.from({ length: rows }).map((_, row) =>
+//         Array.from({ length: columns }).map((_, col) => {
+//           const index = row * columns + col;
+//           return (
+//             <div
+//               key={`${col}-${row}`}
+//               className={`w-10 h-10 flex shrink-0 rounded-[2px] ${
+//                 index % 2 === 0
+//                   ? "bg-gray-50 dark:bg-neutral-950"
+//                   : "bg-yellow-50 dark:bg-neutral-950 shadow-[0px_0px_1px_3px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
+//               }`}
+//             />
+//           );
+//         })
+//       )}
+//     </div>
+//   );
+// }

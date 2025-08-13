@@ -43,7 +43,9 @@ const Dialog_render = ({
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button className="cursor-pointer">Select</Button>
+            <Button className="cursor-pointer rounded-sm border-1 border-[#fcbb00] bg-[#fcbb00] text-[#482100] hover:bg-[#ffdd1b] hover:border-1 hover:border-[#fcbb00] transition-colors">
+              Select
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

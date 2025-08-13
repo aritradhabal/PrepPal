@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { GiWhiteBook } from "react-icons/gi";
 import { GiOpenFolder } from "react-icons/gi";
 import { GiChoice } from "react-icons/gi";
@@ -9,6 +9,7 @@ import { text } from "stream/consumers";
 import SelectCategory from "./_components/SelectCategory";
 import SelectTopic from "./_components/SelectTopic";
 import SelectOptions from "./_components/SelectOptions";
+import { Data_context } from "../DataContext";
 
 function CreateCourse() {
   const StepperOptions = [
@@ -71,10 +72,10 @@ function CreateCourse() {
       </ul>
 
       {/* {Components} */}
+
       {activeIndex == 0 ? <SelectCategory /> : null}
       {activeIndex == 1 ? <SelectTopic /> : null}
       {activeIndex == 2 ? <SelectOptions /> : null}
-
       {/* {Next and Previous Burttons} */}
 
       <div className="mx-5 mb-2 md:mx-20 flex justify-between items-center ">
