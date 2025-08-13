@@ -20,4 +20,16 @@ type DataContextType = {
   setValue: Dispatch<SetStateAction<DataShape>>;
 };
 
-export const Data_context = createContext<DataContextType | undefined>(undefined);
+export const Data_context = createContext<DataContextType | undefined>(
+  undefined
+);
+
+// type ActiveIndexContextType = {
+//   activeIndex: number;
+//   setActiveIndex: Dispatch<SetStateAction<number>>;
+// };
+
+// export const ActiveIndex_context = createContext<ActiveIndexContextType>({
+//   activeIndex: 0,
+//   setActiveIndex: () => {},
+// });

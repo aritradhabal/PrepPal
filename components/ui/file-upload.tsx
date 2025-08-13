@@ -13,6 +13,7 @@ import {
   Data_context,
   DataShape,
 } from "@/app/create-course/_Context/DataContext";
+import { AlertUserDialog } from "./alertuser";
 
 const syllabus_emoji = () => {
   return (
@@ -52,8 +53,15 @@ export const FileUpload = ({
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [disabledState, setdisabledState] = useState(true);
+  const [largefile, setlargefile] = useState(false);
   const handleFileChange = (newFiles: File[]) => {
-    // setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+    if (newFiles) {
+      if (newFiles[0].size > 2097152) {
+        setlargefile((prev) => !prev);
+        return;
+      }
+    }
+
     setFiles(newFiles);
     onChange && onChange(newFiles);
   };
@@ -97,8 +105,6 @@ export const FileUpload = ({
     console.log(data);
     setValue(data);
     setdisabledState((prev) => !prev);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    setOpenDialog((prev) => !prev);
   };
   console.log(value);
 
@@ -247,6 +253,14 @@ export const FileUpload = ({
         <Dialog_fileuploader
           openDialog={openDialog}
           disabledState={disabledState}
+          setOpenDialog={setOpenDialog}
+        />
+      )}
+      {largefile && (
+        <AlertUserDialog
+          open={largefile}
+          setlargefile={setlargefile}
+          fileInputRef={fileInputRef}
         />
       )}
     </div>

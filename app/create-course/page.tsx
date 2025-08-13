@@ -10,9 +10,19 @@ import SelectCategory from "./_components/SelectCategory";
 import SelectTopic from "./_components/SelectTopic";
 import SelectOptions from "./_components/SelectOptions";
 import { Data_context, DataShape } from "./_Context/DataContext";
+import { createContext } from "react";
 
+export const activeIndexContext = createContext<{
+  activeIndex: number;
+  setActiveIndex: (value: number) => void;
+}>({
+  activeIndex: 0,
+  setActiveIndex: () => {}, // Default no-op function
+});
 function CreateCourse() {
   const [value, setValue] = useState<DataShape>({ subjects: [] });
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const StepperOptions = [
     {
@@ -31,10 +41,9 @@ function CreateCourse() {
       icon: <RiSettings2Fill />,
     },
   ];
-  const [activeIndex, setActiveIndex] = useState(0);
-  console.log(activeIndex);
+
   return (
-    <Data_context value={{ value, setValue }}>
+    <Data_context.Provider value={{ value, setValue }}>
       <div className="h-full">
         {/* {Header} */}
         <div className="flex justify-center items-center">
@@ -77,12 +86,12 @@ function CreateCourse() {
         </ul>
 
         {/* {Components} */}
-
-        {activeIndex == 0 ? <SelectCategory /> : null}
-        {activeIndex == 1 ? <SelectTopic /> : null}
-        {activeIndex == 2 ? <SelectOptions /> : null}
-        {/* {Next and Previous Burttons} */}
-
+        <activeIndexContext.Provider value={{ activeIndex, setActiveIndex }}>
+          {activeIndex == 0 ? <SelectCategory /> : null}
+          {activeIndex == 1 ? <SelectTopic /> : null}
+          {activeIndex == 2 ? <SelectOptions /> : null}
+          {/* {Next and Previous Burttons} */}
+        </activeIndexContext.Provider>
         <div className="mx-5 mb-2 md:mx-20 flex justify-between items-center ">
           <Button
             onClick={() => setActiveIndex(activeIndex - 1)}
@@ -108,7 +117,7 @@ function CreateCourse() {
           </Button>
         </div>
       </div>
-    </Data_context>
+    </Data_context.Provider>
   );
 }
 

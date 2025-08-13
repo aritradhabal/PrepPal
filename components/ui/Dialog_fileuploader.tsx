@@ -7,17 +7,28 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "./button";
 import { RiLoader2Fill } from "react-icons/ri";
-import Link from "next/link";
+import { activeIndexContext } from "@/app/create-course/page";
 
 type props = {
   openDialog: boolean;
   disabledState: any;
+  setOpenDialog: any;
 };
 
-function Dialog_fileuploader({ openDialog, disabledState }: props) {
+function Dialog_fileuploader({
+  openDialog,
+  disabledState,
+  setOpenDialog,
+}: props) {
+  const { activeIndex, setActiveIndex } = useContext(activeIndexContext);
+  const handleClick = () => {
+    setOpenDialog(false);
+    setActiveIndex(activeIndex + 1);
+  };
+
   return (
     <Dialog open={openDialog}>
       <DialogContent>
@@ -29,7 +40,9 @@ function Dialog_fileuploader({ openDialog, disabledState }: props) {
         </DialogHeader>
 
         <DialogFooter>
-          <Button disabled={disabledState}>Go To Next</Button>
+          <Button onClick={handleClick} disabled={disabledState}>
+            Go To Next
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
