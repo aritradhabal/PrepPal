@@ -52,6 +52,20 @@ export const FileUpload = ({
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [disabledState, setdisabledState] = useState(true);
+  const handleFileChange = (newFiles: File[]) => {
+    // setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+    setFiles(newFiles);
+    onChange && onChange(newFiles);
+  };
+  const { getRootProps, isDragActive } = useDropzone({
+    multiple: false,
+    noClick: true,
+    onDrop: handleFileChange,
+    accept: { "application/pdf": [] },
+    onDropRejected: (error) => {
+      console.log(error);
+    },
+  });
   const context_ = useContext(Data_context);
   if (!context_) {
     return;
@@ -87,25 +101,10 @@ export const FileUpload = ({
     setOpenDialog((prev) => !prev);
   };
   console.log(value);
-  const handleFileChange = (newFiles: File[]) => {
-    // setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    setFiles(newFiles);
-    onChange && onChange(newFiles);
-  };
 
   const handleClick = () => {
     fileInputRef.current?.click();
   };
-
-  const { getRootProps, isDragActive } = useDropzone({
-    multiple: false,
-    noClick: true,
-    onDrop: handleFileChange,
-    accept: { "application/pdf": [] },
-    onDropRejected: (error) => {
-      console.log(error);
-    },
-  });
 
   return (
     <div className="w-full" {...getRootProps()}>

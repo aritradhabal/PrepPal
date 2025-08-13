@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { Button } from "./button";
 import { RiLoader2Fill } from "react-icons/ri";
+import Link from "next/link";
 
 type props = {
   openDialog: boolean;
