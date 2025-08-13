@@ -175,7 +175,7 @@ Response with ONLY JSON`,
     config,
     contents,
   });
-  let fileIndex = 0;
+  const fileIndex = 0;
   let total = "";
   for await (const chunk of response) {
     total += chunk.text;
