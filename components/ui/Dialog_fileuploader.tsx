@@ -10,7 +10,7 @@ import {
 import React, { useContext } from "react";
 import { Button } from "./button";
 import { RiLoader2Fill } from "react-icons/ri";
-import { activeIndexContext } from "@/app/create-course/page";
+import { activeIndexContext } from "@/app/create-course/_Context/DataContext";
 
 type props = {
   openDialog: boolean;

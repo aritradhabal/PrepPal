@@ -3,22 +3,14 @@ import { Button } from "@/components/ui/button";
 import React, { useState, useContext } from "react";
 import { GiWhiteBook } from "react-icons/gi";
 import { GiOpenFolder } from "react-icons/gi";
-import { GiChoice } from "react-icons/gi";
 import { RiSettings2Fill } from "react-icons/ri";
-import { text } from "stream/consumers";
 import SelectCategory from "./_components/SelectCategory";
 import SelectTopic from "./_components/SelectTopic";
 import SelectOptions from "./_components/SelectOptions";
 import { Data_context, DataShape } from "./_Context/DataContext";
 import { createContext } from "react";
+import { activeIndexContext } from "./_Context/DataContext";
 
-export const activeIndexContext = createContext<{
-  activeIndex: number;
-  setActiveIndex: (value: number) => void;
-}>({
-  activeIndex: 0,
-  setActiveIndex: () => {}, // Default no-op function
-});
 function CreateCourse() {
   const [value, setValue] = useState<DataShape>({ subjects: [] });
 

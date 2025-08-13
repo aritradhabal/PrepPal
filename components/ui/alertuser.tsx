@@ -1,4 +1,3 @@
-import { activeIndexContext } from "@/app/create-course/page";
 import {
   AlertDialog,
   AlertDialogAction,
