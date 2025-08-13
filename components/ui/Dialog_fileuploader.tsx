@@ -11,6 +11,7 @@ import React, { useContext } from "react";
 import { Button } from "./button";
 import { RiLoader2Fill } from "react-icons/ri";
 import { activeIndexContext } from "@/app/create-course/_Context/DataContext";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 type props = {
   openDialog: boolean;
@@ -33,9 +34,15 @@ function Dialog_fileuploader({
     <Dialog open={openDialog}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="flex gap-x-2">
-            <RiLoader2Fill />
-            Processing your file
+          <DialogTitle className="w-full gap-x-2 flex items-center">
+            <div className="w-7 h-7">
+              <DotLottieReact
+                src="https://lottie.host/1da7f0ba-91d3-4b37-a16f-8029d9972b20/WCIVF56TWm.lottie"
+                loop
+                autoplay
+              />
+            </div>
+            <p>Processing your file</p>
           </DialogTitle>
         </DialogHeader>
 

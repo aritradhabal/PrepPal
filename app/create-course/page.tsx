@@ -10,6 +10,7 @@ import SelectOptions from "./_components/SelectOptions";
 import { Data_context, DataShape } from "./_Context/DataContext";
 import { createContext } from "react";
 import { activeIndexContext } from "./_Context/DataContext";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 function CreateCourse() {
   const [value, setValue] = useState<DataShape>({ subjects: [] });
@@ -76,7 +77,7 @@ function CreateCourse() {
             </div>
           ))}
         </ul>
-
+        
         {/* {Components} */}
         <activeIndexContext.Provider value={{ activeIndex, setActiveIndex }}>
           {activeIndex == 0 ? <SelectCategory /> : null}
