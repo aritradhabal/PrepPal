@@ -1,16 +1,22 @@
 "use client";
-import React, { useState } from "react";
-import data_ from "@/app/_shared/TopicList2";
+import React, { useContext, useState } from "react";
 import searchSubjects from "@/app/create-course/_components/SearchQuery";
 import { EmojiProvider, Emoji } from "react-apple-emojis";
 import emojiData from "react-apple-emojis/src/data.json";
 import Dialog_render from "./Dialog_render";
+import useDataContext from "../../_Context/useDataContext";
+import { Data_context } from "../../_Context/DataContext";
 
 function Cards({ searchterm }: { searchterm: string }) {
   const [open, setOpen] = useState(false);
   const [subject_id, setSubject_id] = useState<number | null>(null);
 
-  const data: any = searchSubjects(data_, searchterm);
+  const context = useContext(Data_context);
+  if (!context) {
+    return;
+  }
+  const { value } = context;
+  const data: any = searchSubjects(value, searchterm);
   if (data.subjects.length < 1) {
     return;
   }

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
@@ -9,6 +9,10 @@ import Image from "next/image";
 import { Button } from "./button";
 import Dialog_fileuploader from "./Dialog_fileuploader";
 import { main } from "@/app/_data/upload_pdf";
+import {
+  Data_context,
+  DataShape,
+} from "@/app/create-course/_Context/DataContext";
 
 const syllabus_emoji = () => {
   return (
@@ -44,6 +48,12 @@ export const FileUpload = ({
 }: {
   onChange?: (files: File[]) => void;
 }) => {
+  const context_ = useContext(Data_context);
+
+  if (!context_) {
+    return;
+  }
+  const { value, setValue } = context_;
   const [openDialog, setOpenDialog] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -69,13 +79,16 @@ export const FileUpload = ({
   let data: any;
 
   const ProcessDialog = async () => {
-    setOpenDialog(true);
-    const value = await fileToBase64(files[0]);
-    data = await main({ pdfData: value });
+    setOpenDialog((prev) => !prev);
+    const file_value = await fileToBase64(files[0]);
+    data = await main({ pdfData: file_value });
     console.log(data);
-    setdisabledState(false);
+    setValue(data);
+    setdisabledState((prev) => !prev);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    setOpenDialog((prev) => !prev);
   };
-
+  console.log(value);
   const handleFileChange = (newFiles: File[]) => {
     // setFiles((prevFiles) => [...prevFiles, ...newFiles]);
     setFiles(newFiles);
