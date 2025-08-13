@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Cards from "./ui/Cards";
 import searchSubjects from "./SearchQuery";
-import data from "@/app/_shared/TopicList2";
 
 function SelectTopic() {
   const [SearchTerm, setSearchTerm] = useState("");
