@@ -48,17 +48,15 @@ export const FileUpload = ({
 }: {
   onChange?: (files: File[]) => void;
 }) => {
-  const context_ = useContext(Data_context);
-
-  if (!context_) {
-    return;
-  }
-  const { value, setValue } = context_;
   const [openDialog, setOpenDialog] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [disabledState, setdisabledState] = useState(true);
-
+  const context_ = useContext(Data_context);
+  if (!context_) {
+    return;
+  }
+  const { value, setValue } = context_;
   const fileToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
