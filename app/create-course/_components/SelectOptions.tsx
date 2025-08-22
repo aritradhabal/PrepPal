@@ -21,9 +21,9 @@ function SelectOptions() {
           <SelectLabel className="text-sm font-medium text-gray-950">
             Difficulty Level
           </SelectLabel>
-            <SelectTrigger className="w-[90svw] sm:w-xs">
+          <SelectTrigger className="w-[90svw] sm:w-xs">
             <SelectValue placeholder="Choose an option" />
-            </SelectTrigger>
+          </SelectTrigger>
           <SelectContent>
             <SelectItem value="easy">Easy</SelectItem>
             <SelectItem value="medium">Medium</SelectItem>
@@ -58,6 +58,20 @@ function SelectOptions() {
           <SelectContent>
             <SelectItem value="yes">Yes</SelectItem>
             <SelectItem value="no">No</SelectItem>
+          </SelectContent>
+        </SelectGroup>
+      </Select>
+      <Select>
+        <SelectGroup className="flex flex-col sm:flex-row justify-center items-center">
+          <SelectLabel className="text-sm font-medium text-gray-950">
+            Publicly Visible
+          </SelectLabel>
+          <SelectTrigger className="w-[90svw] sm:w-xs">
+            <SelectValue placeholder="Choose an option" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="true">Yes</SelectItem>
+            <SelectItem value="false">No</SelectItem>
           </SelectContent>
         </SelectGroup>
       </Select>

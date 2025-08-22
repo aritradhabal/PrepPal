@@ -8,7 +8,7 @@ function CoursesHome() {
     <div className="h-auto">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-3xl font-bold">Hello Ankita,</h2>
+          <h2 className="text-3xl font-bold">Hello Aritra,</h2>
           <p>
             Create Ai-curated study material for your exams and share it with
             your friends.
